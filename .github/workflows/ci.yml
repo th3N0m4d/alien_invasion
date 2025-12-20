@@ -25,38 +25,52 @@ jobs:
           python-version: "3.14"
           cache: "pip" # Cache pip dependencies for faster runs
 
-      # 3. Install dependencies
-      - name: Install dependencies
+      # 3. Install system dependencies for Pygame
+      - name: Install SDL dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libsdl2-dev \
+            libsdl2-image-dev \
+            libsdl2-mixer-dev \
+            libsdl2-ttf-dev \
+            libfreetype6-dev \
+            libportmidi-dev \
+            libjpeg-dev \
+            python3-dev
+
+      # 4. Install Python dependencies
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
 
-      # 4. Run Black (check formatting)
+      # 5. Run Black (check formatting)
       - name: Check code formatting with Black
         run: |
           black --check .
         continue-on-error: false
 
-      # 5. Run Flake8 (style check)
+      # 6. Run Flake8 (style check)
       - name: Lint with Flake8
         run: |
           flake8 . --count --show-source --statistics
         continue-on-error: false
 
-      # 6. Run Pylint (comprehensive check)
+      # 7. Run Pylint (comprehensive check)
       - name: Analyze with Pylint
         run: |
           pylint *.py --fail-under=9.0
         continue-on-error: false
 
-      # 7. Run MyPy (type check)
+      # 8. Run MyPy (type check)
       - name: Type check with MyPy
         run: |
           mypy .
         continue-on-error: false
 
-      # 8. Success message
+      # 9. Success message
       - name: All checks passed
         if: success()
         run: echo "✅ All linting checks passed!"
@@ -77,7 +91,20 @@ jobs:
           python-version: "3.14"
           cache: "pip"
 
-      - name: Install dependencies
+      - name: Install SDL dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libsdl2-dev \
+            libsdl2-image-dev \
+            libsdl2-mixer-dev \
+            libsdl2-ttf-dev \
+            libfreetype6-dev \
+            libportmidi-dev \
+            libjpeg-dev \
+            python3-dev
+
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
