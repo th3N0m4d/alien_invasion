@@ -1,0 +1,32 @@
+[MASTER]
+# Folders to skip during analysis
+ignore=tests,venv,.venv,__pycache__
+
+[MESSAGES CONTROL]
+# Disable specific warnings that are too strict for game development
+disable=
+    C0111,  # missing-docstring (allow code without docstrings)
+    R0903,  # too-few-public-methods (Settings class is fine with just __init__)
+    C0103,  # invalid-name (allow short names like x, y, dx, dy)
+    R0913,  # too-many-arguments (game functions often need many params)
+    R0914,  # too-many-locals (game loops can have many variables)
+
+[FORMAT]
+# Maximum characters per line (matches Black and Flake8)
+max-line-length=100
+indent-string='    '
+
+[BASIC]
+# Allow short variable names common in game development
+good-names=i,j,k,x,y,dx,dy,dt,ai,_,id
+
+[DESIGN]
+# Complexity limits
+max-args=7
+max-locals=20
+max-returns=6
+max-branches=15
+
+[TYPECHECK]
+# Ignore pygame's dynamic attribute generation
+generated-members=pygame.*

@@ -1,0 +1,31 @@
+[flake8]
+# Maximum characters per line (matches Black and Pylint)
+max-line-length = 100
+
+# Folders and files to exclude from checking
+exclude = 
+    .git,
+    __pycache__,
+    venv,
+    .venv,
+    ENV,
+    env,
+    build,
+    dist,
+    *.egg-info
+
+# Ignore specific error codes that conflict with Black
+ignore = E203, W503, E501
+
+# Per-file ignores
+per-file-ignores =
+    __init__.py:F401,F403
+
+# Show source code for each error
+show-source = True
+
+# Show statistics at the end
+statistics = True
+
+# Count errors
+count = True
