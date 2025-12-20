@@ -36,3 +36,19 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+*.coverage
+coverage.xml
+.tox/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Linting
+.pylint.d/
